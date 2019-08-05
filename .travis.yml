@@ -1,9 +1,9 @@
 os: linux
-language: c
+language: r
 sudo: required
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -y texlive texlive-lang-czechslovak
+  - sudo apt-get install -y texlive-lang-czechslovak lmodern tipa tex-gyre
 script:
   - pdfcsplain -interaction=nonstopmode rules.tex && pdfcsplain -interaction=nonstopmode rules.tex
 deploy:
