@@ -1,0 +1,16 @@
+os: linux
+language: c
+sudo: required
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y texlive texlive-lang-czechslovak
+script:
+  - pdfcsplain -interaction=nonstopmode rules.tex && pdfcsplain -interaction=nonstopmode rules.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: iu8ZXAjeNFpHa8kEDmaJSvFyh3nrf8PdCzROD6T4G/vi2DUght+i6ux8kMlfp/CFVjO6ID+KGaVbNaKHlyEPD4vqdy/1vLtysR4WNCaO+Ja8+M1kDVdmkKr2eZ7ajM2u/nYKFm18NI8ODxmH+4NyTo3CrPYco4UdQj4sBj8ujGhSkaAPxjAQwZPGhqHwqoZjwUIocZCWlU8dLpDwELy1ZzkkfjMdn6SLOrXQu4aW0t88JDcFV7x395lm/ja2za91b0SUwqfe9MGaJEftmqvtEa8AyDac5Nbw1WkImKcgmXlNeSleGYIjFntk1rZIi93II3pMvNHJrZVZJZ4+vhRPimuuGOu2fOpfxxLUaIIs4VPn6BLcTxsPIvvpjVFvM6HNoYg2FoNusx/MXn7YJqzX5ESA7qMNoaf5gquJJcWCvfuw5i+ga3E0Xmx6CZ14nyVFsyJhfcwv6X0ih+HewwPqfkQgiKGWVNiKpH6bluKopvlPFFy8NPufW3gE5P85WAMtYTQlfFpjsxw3AhCUJJ97cq+FWIoNVOu8hZ4+xDTol/p/M/xXSXQvaxy92qe8xg169XyY1GGRoSodRWNjQ/kE1in6ZNR9ApgFrk9wa8CTMFMGyllr5srN1OE2nkSdRTbyJBOIuqBQ6ZqbM2Q+A13zxNp8FCuv1549MIx8I84DPPQ=
+  file: rules.pdf
+  skip_cleanup: true
+  on:
+    repo: m-fr/CASrules

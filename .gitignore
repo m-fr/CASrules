@@ -22,7 +22,7 @@
 # *.pdf
 
 ## Generated if empty string is given at "Please type another file name for output:"
-.pdf
+rules.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -102,6 +102,7 @@ acs-*.bib
 *.glo
 *.gls
 *.glsdefs
+*.ref
 
 # gnuplottex
 *-gnuplottex-*
