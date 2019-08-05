@@ -6,6 +6,6 @@ Unofficial publication of athletics rules for competitions under Czech Athletic 
 
 ## Competition Rules
 
-You can read the latest version [here](https://github.com/m-fr/Notebook/releases/latest/download/rules.pdf).
+You can read the latest version [here](https://github.com/m-fr/CASrules/releases/latest/download/rules.pdf).
 
 If you want to read official version go to [CAS site](https://www.atletika.cz/clenska-sekce/rozhodci/legislativa/pravidla-atletiky/).
