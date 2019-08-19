@@ -8,6 +8,11 @@
 
 \emergencystretch=2em
 
+\hyperlinks{}{}
+
+\pageno=-1
+\def\folio{\ifnum\pageno<0\else\the\pageno\fi}
+
 % definitions
 
 \def\dt#1\dd#2\dend{
@@ -15,4 +20,14 @@
   #2\par}
 }
 
-\def\rule#1{\global\seccnum=#1}
+\def\rule#1{\global\seccnum=#1}% TOC
+
+% TOC
+
+\def\tocline#1#2#3#4#5{{\leftskip=#1\iindent \rightskip=2\iindent
+   \ifischap\advance\leftskip by\iindent\fi
+   \ifnum#1>1 \advance\leftskip by\iindent\fi
+   \toclinehook \noindent{#2\toclink{#3 -- }}%
+         {#2#4}\nobreak\tocdotfill\pglink{#5}\nobreak\hskip-2\iindent\null\par}}
+
+\def\toclinkA#1{\def\tmp##1!##2\end{\if^##1^\else##1\fi}\tmp#1!\end}
