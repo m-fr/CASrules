@@ -1,9 +1,12 @@
 \input opmac
+\input chelvet
 \input cpalatin
 
 \margins/2 (105,148)mm (15,5,10,17.5)mm
+\fontfam[palatino]
 \typosize[8/9.2]
-\parindent=0mm \iindent=\parindent
+\parindent=0mm
+\iindent=1.5em
 \chyph
 
 \emergencystretch=2em
@@ -15,12 +18,61 @@
 
 % definitions
 
+\def\iiskip{}
+
 \def\dt#1\dd#2\dend{
   {{\bf #1}\par\nobreak
   #2\par}
 }
 
-\def\rule#1{\global\seccnum=#1}% TOC
+\def\rule#1{\global\seccnum=#1}
+
+% sections, etc.
+
+\def\printchap#1{\vfill\supereject
+  {\chapfont \noindent {\hfil\dotocnum{\thetocnum}\hfil}\par
+   \nobreak\noindent{\bfshape\hfil #1 \hfil}\nbpar}\mark{}%
+  \nobreak \remskip\bigskipamount \firstnoindent
+}
+\def\printsec#1{\par \norempenalty-400 \bigskip
+  {\secfont\bfshape \noindent {\hfil\dotocnum{\thetocnum} - #1\hfil}\nbpar}\insertmark{#1}%
+  \nobreak \remskip\medskipamount \firstnoindent
+}
+\def\printsecc#1{\par \norempenalty-200 \medskip
+  {\seccfont \noindent{\hfil PRAVIDLO \the\seccnum \hfil}\par
+   \nobreak\noindent{\bfshape\hfil #1 \hfil}\nbpar}\mark{}%
+  \nobreak \remskip\medskipamount \firstnoindent
+}
+
+\eoldef\chap#1{\ifnonum\else \global\advance\chapnum by1 \fi
+  \chaphook {\globaldefs=1 \secnum=0 \tnum=0 \fnum=0 \dnum=0}\relax
+  \edef\thechapnum{ODDÍL \the\chapnum}\let\thetocnum=\thechapnum
+  \edef\thesecnum{Kapitola \uppercase\expandafter{\romannumeral\secnum}}%
+  \def\dotocnumafter{\wtotoc0\bfshape{#1}}%
+  \printchap{#1}\resetnonumnotoc
+}
+\eoldef\sec#1{\ifnonum\else \global\advance\secnum by1 \fi
+  \sechook {\globaldefs=1 \tnum=0 \fnum=0 \dnum=0}\relax
+  \edef\thesecnum{Kapitola \uppercase\expandafter{\romannumeral\secnum}}\let\thetocnum=\thesecnum
+  \def\dotocnumafter{\wtotoc1\rm{#1}}%
+  \printsec{#1}\resetnonumnotoc
+}
+\eoldef\secc#1{\ifnonum\else \global\advance\seccnum by1 \fi
+  \secchook {}\relax
+  \edef\theseccnum{\the\seccnum}%
+  \printsecc{#1}\resetnonumnotoc
+}
+\eoldef\tit#1{\vglue\titskip
+  {\leftskip=0pt plus1fill \rightskip=\leftskip
+   \titfont \noindent #1\par}%
+   \nobreak\bigskip
+}
+
+\def\titfont{\fontfam[helvetica]\typosize[46/52]\bfshape}
+\def\chapfont{\fontfam[helvetica]\typoscale[\magstep2/\magstep2]}
+\def\secfont{\fontfam[helvetica]\typoscale[\magstep1/\magstep1]}
+\def\seccfont{\fontfam[helvetica]}
+\def\bfshape{\let\tenit=\tenbi \everymath\expandafter{\the\everymath\boldmath}\bf}
 
 % TOC
 
